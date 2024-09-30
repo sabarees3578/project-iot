@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body> 
+         <div class="centerbox">
+            <div class="document">
+                <h1>DOCUMENT</h1>
+                <button>DOWNLOADS</button>
+            </div>
+            <div class="robot">
+                <h1>ROBOT</h1>
+                <button onclick="goToAnothercontroler()">CONTROLER</button>
+            </div>
+            <div class="backend">
+                <h1>BACK END</h1>
+                <button onclick="goToAnotherfirebase()">FIREBASE</button>
+            </div>
+         </div>
+     <script>
+        function goToAnotherfirebase() {
+            window.location.href = "https://iiot-project-8fb78-default-rtdb.firebaseio.com/";  // Replace with the URL you want to navigate to
+        }
+        function goToAnothercontroler() {
+            window.location.href = "robot.html";  // Replace with the URL you want to navigate to
+        }
+     </script>
+</body>+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>robot</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+         <div class="centerbox">
+            
+            <div class="servo1">
+                <input type="range"  id="servo1input" class="servo1input" max="180" min="0" value="0">
+                <p>angle : <span id="servo1out">0</span></p>
+            </div>
+            <div class="servo2">
+                <input type="range"  id="servo2input" class="servo2input" min="0" max="180" value="0">
+                <p>angle : <span id="servo2out">0</span></p>
+
+            </div>
+            <div class="servo3">
+                <input type="range" name="servo3input" id="servo3input" class="servo3input" min="0" max="180" value="0">
+                <p>angle : <span id="servo3out">0</span></p>
+
+            </div>
+            <div class="servo4">
+                <input type="range" id="servo4input" class="servo4input" min="0" max="180" value="0">
+                <p>angle : <span id="servo4out">0</span></p>
+            </div>
+        
+         </div>
+         <div class="firebase"></div>
+    
+
+
+
+
+         <script type="module">
+            // Import Firebase SDK
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+            import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+    
+            // Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyCMCJ28vnxJTPuJtk2y1C7P1ZrFnMLakIg",
+                authDomain: "iiot-project-8fb78.firebaseapp.com",
+                databaseURL: "https://iiot-project-8fb78-default-rtdb.firebaseio.com",
+                projectId: "iiot-project-8fb78",
+                storageBucket: "iiot-project-8fb78.appspot.com",
+                messagingSenderId: "852440913894",
+                appId: "1:852440913894:web:c8500d99a1f7ad07b4e827",
+                measurementId: "G-40JYRN8Z6E"
+            };
+    
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const database = getDatabase(app);
+    
+            // Function to update Firebase
+            function updateFirebase(key, value) {
+                const dbRef = ref(database, 'robot/' + key);
+                set(dbRef, value).then(() => {
+                    console.log(`${key} updated to ${value}`);
+                }).catch((error) => {
+                    console.error('Error updating Firebase:', error);
+                });
+            }
+    
+            // Function to handle servo input changes and update Firebase
+            document.getElementById('servo1input').addEventListener('input', function() {
+                const value = parseInt(this.value); // Convert to integer
+                document.getElementById('servo1out').textContent = value;
+                updateFirebase('servo1', value);
+            });
+    
+            document.getElementById('servo2input').addEventListener('input', function() {
+                const value = parseInt(this.value); // Convert to integer
+                document.getElementById('servo2out').textContent = value;
+                updateFirebase('servo2', value);
+            });
+    
+            document.getElementById('servo3input').addEventListener('input', function() {
+                const value = parseInt(this.value); // Convert to integer
+                document.getElementById('servo3out').textContent = value;
+                updateFirebase('servo3', value);
+            });
+            document.getElementById('servo4input').addEventListener('input', function() {
+                const value = parseInt(this.value); // Convert to integer
+                document.getElementById('servo4out').textContent = value;
+                updateFirebase('servo4', value);
+            });
+    </script>
+</body>
+</html>
